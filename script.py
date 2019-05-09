@@ -2,21 +2,33 @@
 
 import mqtt_service
 import time
+import datetime
+import uuid
 import json
+import random
 
+topic = 'connectedcar/telemetry'
+# TODO update the no of messages to send
+no_messages = 0
 def execute(no_messages):
 	mqtt_service.setup()
 	for x in range(no_messages):
-  		send_sample_data()
-	
+		payload = get_sample_data()
+		# TODO use mqtt_service to publish messages
 
-def send_sample_data():	
-	# TODO	
-	# mqtt_service.publish_message(payload, topic)
-		
+def get_sample_data():
+	x = {
+		"id": uuid.uuid4(),
+		"vin": "3e69833f-e3c6-46a4-b068-054f0288ad19",
+		"transmission_gear_position": random.uniform(0, 6),
+		"vehicle_speed": random.uniform(0, 200),
+		"timestamp": datetime.datetime.utcnow()
+	}
+
+
 if __name__ == '__main__':
-	try:        
-		execute(10);
+	try:
+		execute(no_messages)
 		time.sleep(1)
 	except KeyboardInterrupt:
 		destory()   
