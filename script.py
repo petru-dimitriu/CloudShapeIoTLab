@@ -17,14 +17,14 @@ def execute(no_messages):
 		# TODO use mqtt_service to publish messages
 
 def get_sample_data():
-	x = {
+	data = {
 		"id": uuid.uuid4(),
 		"vin": "3e69833f-e3c6-46a4-b068-054f0288ad19",
 		"transmission_gear_position": random.uniform(0, 6),
 		"vehicle_speed": random.uniform(0, 200),
 		"timestamp": datetime.datetime.utcnow()
 	}
-
+	return str(data)
 
 if __name__ == '__main__':
 	try:
